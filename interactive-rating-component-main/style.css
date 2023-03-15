@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass&display=swap');
+
+:root {
+	--black: hsl(0, 0%, 0%);
+	--orange: hsl(25, 97%, 53%);
+	--white: hsl(0, 0%, 100%);
+	--light-grey: hsl(217, 12%, 63%);
+	--medium-grey: hsl(216, 12%, 54%);
+	--dark-blue: hsl(213, 19%, 18%);
+	--very-dark-blue: hsl(216, 12%, 8%);
+	--font-size: 15px;
+	--font-weight-bold: 700;
+	--font-weight-normal: 400;
+	--font-family: 'Overpass', sans-serif;
+}
+
+body {
+	background-color: var(--black);
+	font-size: var(--font-size);
+	font-family: var(--font-family);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.container {
+	background-color: var(--very-dark-blue);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: left;
+	border-radius: 1rem;
+	padding: 2rem;
+	width: max(30%, 300px);
+	gap: 2rem;
+}
+
+h1 {
+	color: var(--white);
+	font-weight: var(--font-weight-bold);
+	margin: 0;
+}
+
+p {
+	color: var(--light-grey);
+	font-weight: var(--font-weight-normal);
+	margin: 0;
+}
+
+.text-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.ratings-section {
+	display: flex;
+	justify-content: space-between;
+}
+
+input[name="rating"], #submit {
+	display: none;
+}
+
+.rating {
+	background-color: var(--dark-blue);
+	width: 1rem;
+	height: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: large;
+}
+
+.rating:hover {
+	background-color: var(--orange);
+}
+
+input[name="rating"]:checked + .rating {
+	background-color: var(--medium-grey);
+}
+
+.submit {
+	background-color: var(--orange);
+	text-transform: uppercase;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	letter-spacing: .2rem;
+}
+
+.submit:hover {
+	background-color: var(--white);
+	color: var(--orange);
+}
+
+.submit, .rating {
+	color: var(--white);
+	cursor: pointer;
+}
+
+.star {
+	background-color: var(--dark-blue);
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.submit, .rating, .star {
+	padding: 1rem;
+	border-radius: 2rem;
+}
+
+.thanks {
+	align-items: center !important;
+	text-align: center;
+	display: none;
+}
+
+.info {
+	background-color: var(--dark-blue);
+	color: var(--orange);
+	border-radius: 1.5rem;
+	padding: .5rem 1rem;
+}
