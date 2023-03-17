@@ -91,6 +91,7 @@ function reset() {
 		document.getElementById("bill").value = ""
 		document.getElementById("people").value = ""
 		document.getElementById("tip-custom-input").value = ""
+		document.getElementById("tip-custom").value = 0
 		if (document.querySelector("input[name=tip]:checked"))
 			document.querySelector("input[name=tip]:checked").checked = false
 		document.getElementById("tip-amount").innerHTML = "0.00"

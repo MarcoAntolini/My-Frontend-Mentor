@@ -245,6 +245,22 @@ input[type="reset"]:disabled {
 	background-color: var(--disabled-cyan);
 }
 
+@media (width < 1072px) {
+	form {
+		flex-direction: column;
+	}
+
+	section {
+		width: auto;
+	}
+}
+
+@media (width < 660px) {
+	form {
+		width: 396px;
+	}
+}
+
 @media (width < 376px) {
 	form {
 		width: 100%;
