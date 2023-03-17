@@ -15,7 +15,7 @@ window.onload = () => {
 	numericInputs.forEach(input => input.addEventListener("change", update))
 
 	const tipButtons = document.querySelectorAll("input[name=tip]")
-	tipButtons.forEach(button => button.addEventListener("click", update))
+	tipButtons.forEach(button => button.addEventListener("click", button => update(button.currentTarget)))
 
 	const customLabel = document.querySelector(".custom-label")
 	customLabel.addEventListener("click", update)
@@ -67,7 +67,8 @@ function calculateTotal(tipAmount) {
 	return peopleNumber == 0 ? 0 : billValue / peopleNumber + tipAmount
 }
 
-function update() {
+function update(button) {
+	checkButton(button)
 	const tipElement = document.getElementById("tip-amount")
 	const tipAmount = calculateTipAmount()
 	tipElement.innerHTML = tipAmount.toFixed(2)
@@ -101,4 +102,10 @@ function reset() {
 
 function disableButton() {
 	document.getElementById("reset").disabled = true
+}
+
+function checkButton(button) {
+	if (button && button.type == "radio") {
+		document.getElementById("tip-custom-input").value = ""
+	}
 }

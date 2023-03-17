@@ -18,6 +18,10 @@
 	--desktop-width: 1440px;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	font-family: var(--font-family);
 	font-size: var(--font-size);
@@ -105,13 +109,18 @@ input[type="number"] {
 	border: 2px solid var(--light-grayish-cyan);
 	border-radius: 5px;
 	padding: 0.5rem;
-	width: 95%;
+	width: 100%;
+	outline: none;
 }
 
 input[type="number"]::placeholder {
 	font-weight: var(--font-weight);
 	color: var(--grayish-cyan);
 	font-size: large;
+}
+
+input[type="number"]:hover {
+	border-color: var(--background-cyan);
 }
 
 input[type="number"]:focus {
@@ -126,14 +135,15 @@ input::-webkit-inner-spin-button {
 }
 
 #tip-custom-input {
-	font-size: x-large;
+	font-size: large;
 	border: none;
 	background: transparent;
+	padding-top: 0.7rem;
 }
 
 #tip-custom-input::placeholder {
 	text-align: center;
-	font-size: x-large;
+	font-size: large;
 }
 
 #tip-custom-input:focus ~ .custom-label {
@@ -147,6 +157,11 @@ input::-webkit-inner-spin-button {
 .custom-label {
 	background-color: var(--white) !important;
 	border: 2px solid var(--light-grayish-cyan);
+	padding: 0 !important;
+}
+
+.custom-label:hover {
+	border-color: var(--background-cyan);
 }
 
 .tip-grid {
@@ -173,9 +188,11 @@ input[type="radio"] + label {
 	padding: 0.2rem 0.2rem 0;
 }
 
-input[type="radio"]:hover + label {
+input[type="radio"]:hover + label,
+label[tabindex="0"]:focus-visible {
 	background-color: var(--background-cyan);
 	color: var(--very-dark-cyan);
+	outline: none !important;
 }
 
 input[type="radio"]:checked + label {
@@ -230,7 +247,7 @@ input[type="reset"]:disabled {
 
 @media (width < 376px) {
 	form {
-		width: 83%;
+		width: 100%;
 		flex-direction: column;
 	}
 
