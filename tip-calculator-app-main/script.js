@@ -15,9 +15,13 @@ window.onload = () => {
 	customTip.addEventListener("input", e => validateInput(e))
 	customTip.addEventListener("keyup", e => validateInput(e))
 	customTip.addEventListener("keydown", e => validateInput(e))
+	customTip.addEventListener("keyup", e => clickLabel(e, customTip))
 
 	const tipButtons = document.querySelectorAll("input[name=tip]")
 	tipButtons.forEach(button => button.addEventListener("click", button => update(button.currentTarget)))
+
+	const tipLabels = document.querySelectorAll(".tip-label")
+	tipLabels.forEach(label => label.addEventListener("keyup", e => clickLabel(e, label)))
 
 	const customLabel = document.querySelector(".custom-label")
 	customLabel.addEventListener("click", update)
@@ -115,4 +119,8 @@ function checkButton(button) {
 	if (button && button.type == "radio") {
 		document.getElementById("tip-custom-input").value = ""
 	}
+}
+
+function clickLabel(e, label) {
+	if (e.keyCode == 13) label.click()
 }
