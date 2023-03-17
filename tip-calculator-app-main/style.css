@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass&display=swap");
+
+:root {
+	--strong-cyan: hsl(172, 67%, 45%);
+	--background-cyan: hsl(172, 94%, 87%);
+	--very-dark-cyan: hsl(183, 100%, 15%);
+	--disabled-cyan: hsl(183, 81%, 23%);
+	--dark-grayish-cyan: hsl(186, 14%, 43%);
+	--grayish-cyan: hsl(184, 14%, 56%);
+	--light-grayish-cyan: hsl(185, 41%, 84%);
+	--very-light-grayish-cyan: hsl(189, 41%, 97%);
+	--white: hsl(0, 0%, 100%);
+	--red: hsl(0, 100%, 63%);
+	--font-family: "Overpass", sans-serif;
+	--font-size: 24px;
+	--font-weight: 700;
+	--mobile-width: 375px;
+	--desktop-width: 1440px;
+}
+
+body {
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	font-weight: var(--font-weight);
+	background-color: var(--background-cyan);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	gap: 2rem;
+	margin: 0;
+	padding: 0;
+}
+
+form {
+	background-color: var(--white);
+	border-radius: 10px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+	padding: 2rem;
+	display: flex;
+	gap: 2rem;
+	width: 60%;
+}
+
+form > * {
+	flex: 1;
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	border-radius: 10px;
+	width: 50%;
+}
+
+section:nth-child(2) {
+	background-color: var(--very-dark-cyan);
+	padding: 2rem;
+	gap: 5.5rem;
+}
+
+p {
+	color: var(--dark-grayish-cyan);
+	margin: 0;
+	margin-bottom: 0.5rem;
+	font-size: small;
+}
+
+span {
+	color: var(--strong-cyan);
+	font-size: xx-large;
+	text-align: end;
+}
+
+.white {
+	color: var(--white);
+}
+
+.svg {
+	position: relative;
+}
+
+.svg::before {
+	position: absolute;
+	inset: 3px 0 0 10px;
+}
+
+.bill-label::before {
+	content: url("images/icon-dollar.svg");
+}
+
+.people-label::before {
+	content: url("images/icon-person.svg");
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+	font-family: var(--font-family);
+	font-weight: var(--font-weight);
+	font-size: large;
+	color: var(--very-dark-cyan);
+	text-align: end;
+	border: 2px solid var(--light-grayish-cyan);
+	border-radius: 5px;
+	padding: 0.5rem;
+	width: 95%;
+}
+
+input[type="number"]::placeholder {
+	font-weight: var(--font-weight);
+	color: var(--grayish-cyan);
+	font-size: large;
+}
+
+input[type="number"]:focus {
+	outline: none;
+	border-color: var(--strong-cyan);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+#tip-custom-input {
+	font-size: x-large;
+	border: none;
+	background: transparent;
+}
+
+#tip-custom-input::placeholder {
+	text-align: center;
+	font-size: x-large;
+}
+
+#tip-custom-input:focus ~ .custom-label {
+	border: 2px solid var(--strong-cyan);
+}
+
+.custom-label:has(#tip-custom-input:focus) {
+	border-color: var(--strong-cyan);
+}
+
+.custom-label {
+	background-color: var(--white) !important;
+	border: 2px solid var(--light-grayish-cyan);
+}
+
+.tip-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 1rem;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"] + label {
+	width: auto;
+	cursor: pointer;
+	vertical-align: middle;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--very-dark-cyan);
+	color: var(--white);
+	border-radius: 5px;
+	padding: 0.2rem 0.2rem 0;
+}
+
+input[type="radio"]:hover + label {
+	background-color: var(--background-cyan);
+	color: var(--very-dark-cyan);
+}
+
+input[type="radio"]:checked + label {
+	background-color: var(--strong-cyan);
+	color: var(--very-dark-cyan);
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.row p {
+	width: auto;
+}
+
+#alert {
+	display: none;
+	color: var(--red);
+	width: auto;
+	flex-direction: row-reverse;
+}
+
+.info-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 2rem;
+}
+
+input[type="reset"] {
+	text-transform: uppercase;
+	font-weight: var(--font-weight);
+	background-color: var(--grayish-cyan);
+	color: var(--very-dark-cyan);
+	border: none;
+	border-radius: 5px;
+	padding: 0.5rem;
+	cursor: pointer;
+}
+
+input[type="reset"]:hover {
+	background-color: var(--background-cyan);
+}
+
+input[type="reset"]:active {
+	background-color: var(--strong-cyan);
+}
+
+input[type="reset"]:disabled {
+	background-color: var(--disabled-cyan);
+}
+
+@media (width < 376px) {
+	form {
+		width: 83%;
+		flex-direction: column;
+	}
+
+	section {
+		width: auto;
+	}
+
+	section:nth-child(2) {
+		gap: 2rem;
+	}
+
+	.tip-grid {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(3, 1fr);
+	}
+}

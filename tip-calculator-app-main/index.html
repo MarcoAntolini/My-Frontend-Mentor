@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js"></script>
+		<title>Frontend Mentor | Tip calculator app</title>
+	</head>
+	<body>
+		<img src="images/logo.svg" alt="logo" />
+		<form action="post">
+			<section>
+				<div>
+					<p>Bill</p>
+					<label for="bill" class="svg bill-label">
+						<input type="number" name="bill" id="bill" placeholder="0" />
+					</label>
+				</div>
+				<div>
+					<p>Select Tip %</p>
+					<div class="tip-grid">
+						<input type="radio" name="tip" id="tip-5" value="5" />
+						<label for="tip-5">5%</label>
+						<input type="radio" name="tip" id="tip-10" value="10" />
+						<label for="tip-10">10%</label>
+						<input type="radio" name="tip" id="tip-15" value="15" />
+						<label for="tip-15">15%</label>
+						<input type="radio" name="tip" id="tip-25" value="25" />
+						<label for="tip-25">25%</label>
+						<input type="radio" name="tip" id="tip-50" value="50" />
+						<label for="tip-50">50%</label>
+						<input type="radio" name="tip" id="tip-custom" value="0" />
+						<label for="tip-custom" class="custom-label">
+							<input
+								type="number"
+								name="tip-custom"
+								id="tip-custom-input"
+								placeholder="Custom"
+								min="0"
+								max="100"
+							/>
+						</label>
+					</div>
+				</div>
+				<div>
+					<div class="row">
+						<p>Number of People</p>
+						<p id="alert">Can't be zero</p>
+					</div>
+					<label for="people" class="svg people-label">
+						<input type="number" name="people" id="people" placeholder="0" />
+					</label>
+				</div>
+			</section>
+			<section>
+				<div class="info-grid">
+					<div>
+						<p class="white">Tip Amount</p>
+						<p>/ person</p>
+					</div>
+					<span>$<span id="tip-amount">0.00</span></span>
+					<div>
+						<p class="white">Total</p>
+						<p>/ person</p>
+					</div>
+					<span>$<span id="total">0.00</span></span>
+				</div>
+				<input type="reset" value="Reset" id="reset" disabled />
+			</section>
+		</form>
+	</body>
+</html>
