@@ -1,20 +1,17 @@
 window.onload = () => {
 	const numericInputs = document.querySelectorAll("input[type=number]")
-	numericInputs.forEach(input => input.addEventListener("keydown", e => allowOnlyNumbers(e)))
-	numericInputs.forEach(input => input.addEventListener("input", update))
+	numericInputs.forEach(input => input.addEventListener("input", e => allowOnlyNumbers(e)))
 	numericInputs.forEach(input => input.addEventListener("keyup", update))
-	numericInputs.forEach(input => input.addEventListener("keydown", update))
-	numericInputs.forEach(input => input.addEventListener("change", update))
+
+	const billInput = document.getElementById("bill")
+	billInput.addEventListener("input", e => validateBillInput(e))
 
 	const peopleInput = document.getElementById("people")
-	peopleInput.addEventListener("keydown", e => preventDecimals(e))
+	peopleInput.addEventListener("input", e => validatePeopleInput(e))
 
 	const customTip = document.getElementById("tip-custom-input")
 	customTip.addEventListener("click", setChecked)
-	customTip.addEventListener("change", e => validateInput(e))
-	customTip.addEventListener("input", e => validateInput(e))
-	customTip.addEventListener("keyup", e => validateInput(e))
-	customTip.addEventListener("keydown", e => validateInput(e))
+	customTip.addEventListener("input", e => validateTipInput(e))
 	customTip.addEventListener("keyup", e => clickLabel(e, customTip))
 
 	const tipButtons = document.querySelectorAll("input[name=tip]")
@@ -42,23 +39,43 @@ function allowOnlyNumbers(e) {
 	e.preventDefault()
 }
 
+function validateTipInput(e) {
+	preventDecimals(e)
+	setInputRange(e, 0, 100)
+	document.getElementById("tip-custom").value = e.target.value ? e.target.value : 0
+}
+
+function validateBillInput(e) {
+	setInputRange(e, 0, 10000)
+}
+
+function validatePeopleInput(e) {
+	preventDecimals(e)
+	setInputRange(e, 0, 100)
+}
+
 function preventDecimals(e) {
 	const key = e.keyCode
 	if (key == 110 || key == 190 || key == 108 || key == 188) e.preventDefault()
 }
 
-function validateInput(e) {
-	preventDecimals(e)
-	if (e.target.value > 100) {
-		e.target.value = 100
-	} else if (e.target.value < 0) {
-		e.target.value = 0
-	}
-	document.getElementById("tip-custom").value = e.target.value ? e.target.value : 0
+function setInputRange(e, min, max) {
+	if (e.target.value > max) e.target.value = max
+	else if (e.target.value < min) e.target.value = min
 }
 
 function setChecked() {
 	document.getElementById("tip-custom").checked = true
+}
+
+function update(button) {
+	checkButton(button)
+	const tipElement = document.getElementById("tip-amount")
+	const tipAmount = calculateTipAmount()
+	tipElement.innerHTML = tipAmount.toFixed(2)
+	const totalElement = document.getElementById("total")
+	const total = calculateTotal(tipAmount)
+	totalElement.innerHTML = total.toFixed(2)
 }
 
 function calculateTipAmount() {
@@ -75,16 +92,6 @@ function calculateTotal(tipAmount) {
 	const billValue = document.getElementById("bill").value || 0
 	const peopleNumber = document.getElementById("people").value || 0
 	return peopleNumber == 0 ? 0 : billValue / peopleNumber + tipAmount
-}
-
-function update(button) {
-	checkButton(button)
-	const tipElement = document.getElementById("tip-amount")
-	const tipAmount = calculateTipAmount()
-	tipElement.innerHTML = tipAmount.toFixed(2)
-	const totalElement = document.getElementById("total")
-	const total = calculateTotal(tipAmount)
-	totalElement.innerHTML = total.toFixed(2)
 }
 
 function peopleWarning(isZero) {
