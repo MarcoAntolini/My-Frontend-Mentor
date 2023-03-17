@@ -261,7 +261,7 @@ input[type="reset"]:disabled {
 	}
 }
 
-@media (width < 376px) {
+@media (width < 396px) {
 	form {
 		width: 100%;
 		flex-direction: column;

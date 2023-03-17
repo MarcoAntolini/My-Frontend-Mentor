@@ -1,6 +1,13 @@
 window.onload = () => {
 	const numericInputs = document.querySelectorAll("input[type=number]")
 	numericInputs.forEach(input => input.addEventListener("keydown", e => allowOnlyNumbers(e)))
+	numericInputs.forEach(input => input.addEventListener("input", update))
+	numericInputs.forEach(input => input.addEventListener("keyup", update))
+	numericInputs.forEach(input => input.addEventListener("keydown", update))
+	numericInputs.forEach(input => input.addEventListener("change", update))
+
+	const peopleInput = document.getElementById("people")
+	peopleInput.addEventListener("keydown", e => preventDecimals(e))
 
 	const customTip = document.getElementById("tip-custom-input")
 	customTip.addEventListener("click", setChecked)
@@ -8,11 +15,6 @@ window.onload = () => {
 	customTip.addEventListener("input", e => validateInput(e))
 	customTip.addEventListener("keyup", e => validateInput(e))
 	customTip.addEventListener("keydown", e => validateInput(e))
-
-	numericInputs.forEach(input => input.addEventListener("input", update))
-	numericInputs.forEach(input => input.addEventListener("keyup", update))
-	numericInputs.forEach(input => input.addEventListener("keydown", update))
-	numericInputs.forEach(input => input.addEventListener("change", update))
 
 	const tipButtons = document.querySelectorAll("input[name=tip]")
 	tipButtons.forEach(button => button.addEventListener("click", button => update(button.currentTarget)))
@@ -36,9 +38,13 @@ function allowOnlyNumbers(e) {
 	e.preventDefault()
 }
 
-function validateInput(e) {
+function preventDecimals(e) {
 	const key = e.keyCode
 	if (key == 110 || key == 190 || key == 108 || key == 188) e.preventDefault()
+}
+
+function validateInput(e) {
+	preventDecimals(e)
 	if (e.target.value > 100) {
 		e.target.value = 100
 	} else if (e.target.value < 0) {
