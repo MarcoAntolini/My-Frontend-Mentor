@@ -29,10 +29,11 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
 	gap: 2rem;
 	margin: 0;
 	padding: 0;
+	overflow-y: auto;
+	min-height: 100vh;
 }
 
 form {
@@ -87,6 +88,7 @@ span {
 .svg::before {
 	position: absolute;
 	inset: 3px 0 0 10px;
+	width: fit-content;
 }
 
 .bill-label::before {

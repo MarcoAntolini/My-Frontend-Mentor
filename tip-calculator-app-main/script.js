@@ -1,16 +1,19 @@
 window.onload = () => {
 	const numericInputs = document.querySelectorAll("input[type=number]")
-	numericInputs.forEach(input => input.addEventListener("input", e => allowOnlyNumbers(e)))
+	numericInputs.forEach(input => input.addEventListener("keydown", e => allowOnlyNumbers(e)))
 	numericInputs.forEach(input => input.addEventListener("keyup", update))
 
 	const billInput = document.getElementById("bill")
+	billInput.addEventListener("keydown", e => validateBillInput(e))
 	billInput.addEventListener("input", e => validateBillInput(e))
 
 	const peopleInput = document.getElementById("people")
+	peopleInput.addEventListener("keydown", e => validatePeopleInput(e))
 	peopleInput.addEventListener("input", e => validatePeopleInput(e))
 
 	const customTip = document.getElementById("tip-custom-input")
 	customTip.addEventListener("click", setChecked)
+	customTip.addEventListener("keydown", e => validateTipInput(e))
 	customTip.addEventListener("input", e => validateTipInput(e))
 	customTip.addEventListener("keyup", e => clickLabel(e, customTip))
 
@@ -31,7 +34,6 @@ function allowOnlyNumbers(e) {
 	const key = e.keyCode
 	if (48 <= key && key <= 57) return // 0-9 on keyboard
 	if (96 <= key && key <= 105) return // 0-9 on numpad
-	if (key == 110 || key == 190) return // . on keyboard and numpad
 	if (key == 108 || key == 188) return // , on keyboard and numpad
 	if (key == 8 || key == 46) return // backspace, delete
 	if (key == 9 || key == 13) return // tab, enter
@@ -62,6 +64,10 @@ function preventDecimals(e) {
 function setInputRange(e, min, max) {
 	if (e.target.value > max) e.target.value = max
 	else if (e.target.value < min) e.target.value = min
+	else if (e.target.value % 1 != 0) {
+		const decimals = e.target.value.split(".")[1].length
+		if (decimals > 2) e.target.value = e.target.value.slice(0, -1)
+	}
 }
 
 function setChecked() {
